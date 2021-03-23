@@ -44,7 +44,7 @@ COPY ./docker/scan_dir.php /root
 
 # SSL
 RUN yum install -y mod_ssl
-RUN mkdir -p /etc/letsencrypt/live/itengineer-scouter.com
+RUN mkdir -p /etc/letsencrypt/live/dev.itengineer-scouter.work
 COPY ./docker/httpd-le-ssl.conf /etc/httpd/conf/
 COPY ./docker/options-ssl-apache.conf /etc/letsencrypt/
 COPY ./docker/ssl.conf /etc/httpd/conf.d
