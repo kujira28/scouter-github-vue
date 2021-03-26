@@ -149,6 +149,8 @@
                 />
               </div>
               <div class="my-4">
+                <label class="text-xs">重要</label>
+                <input class="ml-2" type="checkbox" id="checkbox" v-model="form.important" />
               </div>
 
               <div v-if="update_mode" class="flex items-center justify-between">
@@ -157,6 +159,12 @@
                   class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex items-center"
                 >
                   <span class="font-bold text-xs">予定を更新</span>
+                </button>
+                <button
+                  @click="deleteTask(form.id)"
+                  class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg flex items-center ml-2"
+                >
+                  <span class="text-xs font-bold text-white">予定を削除</span>
                 </button>
               </div>
               <div v-else>
@@ -211,6 +219,7 @@
                   @dragstart="dragStart(dayEvent.id)"
                 >
                   <div class="flex justify-center items-center">
+                    <p>{{ dayEvent.name }}</p>
                   </div>
                   <p>開始{{ dayEvent.startTime }}</p>
                   <p>終了予定{{ dayEvent.endTime }}</p>
@@ -264,7 +273,6 @@ export default {
             color: '',
             startTime: '',
             endTime: '',
-            important: false,
           },
           events: [],
   }
@@ -298,6 +306,7 @@ export default {
             this.form.end = task.end;
             this.form.color = task.color;
             this.form.startTime = task.startTime;
+            this.form.endTime = task.endTime;
           },
 
           updateTask(id) {
@@ -310,7 +319,16 @@ export default {
             this.form = {};
             this.show = false;
           },
-          
+
+          deleteTask(id) {
+            let delete_index;
+            this.events.map((task, index) => {
+              if (task.id === id) delete_index = index;
+            });
+            this.events.splice(delete_index, 1);
+            this.form = {};
+            this.show = false;
+          },
           getStartDate() {
             let date = moment(this.currentDate);
             date.startOf('month');
@@ -432,8 +450,10 @@ export default {
           },
 
           nextMonth() {
+            this.currentDate = moment(this.currentDate).add(1, 'month');
           },
           prevMonth() {
+            this.currentDate = moment(this.currentDate).subtract(1, 'month');
           },
 
           youbi(dayIndex) {
@@ -533,14 +553,37 @@ export default {
           },
           sortedEvents() {
             return this.events.slice().sort(function (a, b) {
-              let startTime = parseInt(a);
-              let endTime = parseInt(b);
+              let startTime = parseInt(a.startTime.replace(':', ''));
+              let endTime = parseInt(b.startTime.replace(':', ''));
 
               if (startTime < endTime) return -1;
               if (startTime > endTime) return 1;
+              return 0;
             });
           },
 
+          sortedEventsByHour() {
+            return this.events.slice().sort(function (a, b) {
+              if (
+                moment(a.end).diff(moment(a.start), 'days') === 1 &&
+                moment(b.end).diff(moment(b.start), 'days') === 1
+              ) {
+                let startTime = moment(a.startTime).format('h:mm');
+                let endTime = moment(b.startTime).format('h:mm');
+                if (startTime < endTime) return -1;
+                if (startTime > endTime) return 1;
+                return 0;
+              } else {
+                return this.events.slice().sort(function (a, b) {
+                  let startDate = moment(a.start).format('YYYY-MM-DD');
+                  let endDate = moment(b.start).format('YYYY-MM-DD');
+                  if (startDate < endDate) return -1;
+                  if (startDate > endDate) return 1;
+                  return 0;
+                });
+              }
+            });
+          },
         },
 }
 </script>
