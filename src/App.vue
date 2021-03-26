@@ -149,8 +149,6 @@
                 />
               </div>
               <div class="my-4">
-                <label class="text-xs">重要</label>
-                <input class="ml-2" type="checkbox" id="checkbox" v-model="form.important" />
               </div>
 
               <div v-if="update_mode" class="flex items-center justify-between">
@@ -486,36 +484,36 @@ export default {
             // this.colRight = false;
 
             if (eventId !== '') {
-              let dragEvent = this.events.find((event) => event.id == eventId);
-              let betweenDays = moment(dragEvent.end).diff(
-                moment(dragEvent.start),
+              let dragEvent = this((event) => event == eventId);
+              let betweenDays = moment(
+                moment(dragEvent),
                 'days'
               );
               dragEvent.start = date;
               dragEvent.end = moment(dragEvent.start)
-                .add(betweenDays, 'days')
+                .add(betweenDays, '')
                 .format('YYYY-MM-DD');
 
               let drag_index;
-              this.events.map((task, index) => {
-                if (task.id === parseFloat(eventId)) {
+              this((task, index) => {
+                if (task === parseFloat(eventId)) {
                   drag_index = index;
                 }
               });
-              this.events.splice(drag_index, 1);
-              this.events.push(dragEvent);
+              this(drag_index, 1);
+              this();
 
             }
 
             if (dragIdLeft !== '') {
-              let dragEvent = this.events.find(
-                (event) => event.id == dragIdLeft
+              let dragEvent = this(
+                (event) => event == dragIdLeft
               );
               dragEvent.start = date;
 
               let drag_index;
-              this.events.map((task, index) => {
-                if (task.id === parseFloat(dragIdLeft)) {
+              this((task, index) => {
+                if (task === parseFloat(dragIdLeft)) {
                   drag_index = index;
                 }
               });
@@ -524,19 +522,19 @@ export default {
             }
 
             if (dragIdRight !== '') {
-              let dragEvent = this.events.find(
-                (event) => event.id == dragIdRight
+              let dragEvent = this(
+                (event) => event == dragIdRight
               );
-              dragEvent.end = date;
+              dragEvent = date;
 
               let drag_index;
-              this.events.map((task, index) => {
-                if (task.id === parseFloat(dragIdRight)) {
+              this((task, index) => {
+                if (task === parseFloat()) {
                   drag_index = index;
                 }
               });
-              this.events.splice(drag_index, 1);
-              this.events.push(dragEvent);
+              this.events(drag_index, 1);
+              this.events(dragEvent);
               this.colRight = true;
             }
           },
