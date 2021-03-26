@@ -283,11 +283,11 @@ export default {
             for (let i = 0; i < num; i++) {
               days.push({
                 day: date.date(),
-                dayOfWeek: dayOfWeek[date.day()],
+                dayOfWeek: dayOfWeek[date],
                 block_number,
               });
-              date.add(1, 'day');
-              block_number++;
+              date.add(1, '');
+              block_number;
             }
             return days;
           },
@@ -353,10 +353,10 @@ export default {
           },
 
           scrollDistance() {
-            let start_date = moment(this.start_month);
-            let between_days = this.today.diff(start_date, 'days');
+            let start_date = moment;
+            let between_days = this.today(start_date, '');
             return (
-              (between_days + 1) * this.block_size - this.calendarViewWidth / 2
+              (between_days + 1) * this - this / 2
             );
           },
 
