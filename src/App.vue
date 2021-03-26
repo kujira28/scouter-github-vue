@@ -295,37 +295,13 @@ export default {
             this.show = false;
           },
 
-          editTask(task) {
-            this.update_mode = true;
-            this.show = true;
-            this.form.id = task.id;
-            this.form.name = task.name;
-            this.form.start = task.start;
-            this.form.end = task.end;
-            this.form.color = task.color;
-            this.form.startTime = task.startTime;
-            this.form.endTime = task.endTime;
+          editTask() {
           },
 
-          updateTask(id) {
-            let edit_index;
-            this.events.map((task, index) => {
-              if (task.id === id) edit_index = index;
-            });
-            this.events.splice(edit_index, 1);
-            this.events.push(this.form);
-            this.form = {};
-            this.show = false;
+          updateTask() {
           },
 
-          deleteTask(id) {
-            let delete_index;
-            this.events.map((task, index) => {
-              if (task.id === id) delete_index = index;
-            });
-            this.events.splice(delete_index, 1);
-            this.form = {};
-            this.show = false;
+          deleteTask() {
           },
           getStartDate() {
             let date = moment(this.currentDate);
@@ -461,83 +437,6 @@ export default {
             return week[dayIndex];
           },
 
-          dragStart(dayEvent) {
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.dropEffect = 'move';
-            event.dataTransfer.setData('eventId', dayEvent);
-          },
-
-          dragleft(dayEvent) {
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.dropEffect = 'move';
-            event.dataTransfer.setData('dragIdLeft', dayEvent);
-          },
-          dragright(dayEvent) {
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.dropEffect = 'move';
-            event.dataTransfer.setData('dragIdRight', dayEvent);
-          },
-          dragEnd(date) {
-            let eventId = event.dataTransfer.getData('eventId');
-            let dragIdLeft = event.dataTransfer.getData('dragIdLeft');
-            let dragIdRight = event.dataTransfer.getData('dragIdRight');
-            // this.colRight = false;
-
-            if (eventId !== '') {
-              let dragEvent = this((event) => event == eventId);
-              let betweenDays = moment(
-                moment(dragEvent),
-                'days'
-              );
-              dragEvent.start = date;
-              dragEvent.end = moment(dragEvent.start)
-                .add(betweenDays, '')
-                .format('YYYY-MM-DD');
-
-              let drag_index;
-              this((task, index) => {
-                if (task === parseFloat(eventId)) {
-                  drag_index = index;
-                }
-              });
-              this(drag_index, 1);
-              this();
-
-            }
-
-            if (dragIdLeft !== '') {
-              let dragEvent = this(
-                (event) => event == dragIdLeft
-              );
-              dragEvent.start = date;
-
-              let drag_index;
-              this((task, index) => {
-                if (task === parseFloat(dragIdLeft)) {
-                  drag_index = index;
-                }
-              });
-              this.events.splice(drag_index, 1);
-              this.events.push(dragEvent);
-            }
-
-            if (dragIdRight !== '') {
-              let dragEvent = this(
-                (event) => event == dragIdRight
-              );
-              dragEvent = date;
-
-              let drag_index;
-              this((task, index) => {
-                if (task === parseFloat()) {
-                  drag_index = index;
-                }
-              });
-              this.events(drag_index, 1);
-              this.events(dragEvent);
-              this.colRight = true;
-            }
-          },
         },
         computed: {
           calendars() {
