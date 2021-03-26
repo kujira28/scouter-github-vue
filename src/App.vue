@@ -283,16 +283,9 @@ export default {
               .subtract(1, 'month');
           },
           addTask() {
-            this.update_mode = false;
-            this.form = {};
-            this.show = true;
           },
 
           saveTask() {
-            this.form.id = parseFloat(Math.random());
-            this.events.push(this.form);
-            this.form = {};
-            this.show = false;
           },
 
           editTask() {
