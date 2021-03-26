@@ -278,7 +278,7 @@ export default {
           getDays(year, month, block_number) {
             const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
             let days = [];
-            let date = moment(`${year}-${month}-01`); 
+            let date = moment(`${year}-${month}-01`);
             let num = date.daysInMonth();
             for (let i = 0; i < num; i++) {
               days.push({
@@ -328,151 +328,13 @@ export default {
           todayPosition() {
             this.$refs.calendar.scrollLeft = this.scrollDistance;
           },
-          mouseDownMove(list) {
-            this.dragging = true;
-            this.pageX = event.pageX;
-            this.element = event.target;
-            this.left = event.target.style.left;
-            this.task_id = list.id;
-          },
 
-          mouseMove() {
-            if (this.dragging) {
-              let diff = this.pageX - event.pageX;
-              this.element.style.left = `${
-                parseInt(this.left.replace('px', '')) - diff
-              }px`;
-            }
-          },
-          stopDrag() {
-            if (this) {
-              let diff = this - event;
-              let days = Math.ceil(diff / this);
-              if (days !== 0) {
-                let task = this((task) => task === this);
-                let start_date = moment(task).add(-days, '');
-                let end_date = moment(task).add(-days, '');
-                task['start_date'] = start_date.format('YYYY-MM-DD');
-                task['end_date'] = end_date.format('YYYY-MM-DD');
-              } else {
-                this.element.style.left = `${this}px`;
-              }
-            }
-            if (this.leftResizing) {
-              let diff = this - event;
-              let days = Math.ceil(diff / this);
-              if (days !== 0) {
-                let task = this((task) => task === this);
-                let start_date = moment(task).add(-days, '');
-                let end_date = moment(task);
-                if (end_date.diff(start_date, '') <= 0) {
-                  task['start_date'] = end_date.format('YYYY-MM-DD');
-                } else {
-                  task['start_date'] = start_date.format('YYYY-MM-DD');
-                }
-              } else {
-                this.element.style.width = this;
-                this.element.style.left = `${this}px`;
-              }
-            }
-
-            if (this) {
-              let diff = this - event;
-              let days = Math.ceil(diff / this);
-              if (days === 1) {
-                this.element = `${parseInt(
-                  this.width
-                )}px`;
-              } else if (days <= 2) {
-                days--;
-                let task = this((task) => task.id === this);
-                let end_date = moment(task).add(-days, '');
-                task['end_date'] = end_date.format('YYYY-MM-DD');
-              } else {
-                let task = this((task) => task === this);
-                let start_date = moment(task);
-                let end_date = moment(task).add(-days, '');
-                if (end_date.diff(start_date, 'days') < 0) {
-                  task['end_date'] = start_date.format('YYYY-MM-DD');
-                } else {
-                  task['end_date'] = end_date.format('YYYY-MM-DD');
-                }
-              }
-            }
-          },
-
-          mouseDownResize(task, direction) {
-            direction === 'left'
-              ? (this.leftResizing = true)
-              : (this.rightResizing = true);
-            this.pageX = event.pageX;
-            this.width = event.target.style.width;
-            this.left = event.target.style.left;
-            this.element = event.target;
-            this.task_id = task.id;
-          },
-
-          mouseResize() {
-            if (this.leftResizing) {
-              let diff = this.pageX - event.pageX;
-              if (
-                parseInt(this.width.replace('px', '')) + diff >
-                this.block_size
-              ) {
-                this.element.style.width = `${
-                  parseInt(this.width.replace('px', '')) + diff
-                }px`;
-                this.element.style.left = `${
-                  this.left.replace('px', '') - diff
-                }px`;
-              }
-            }
-            if (this.rightResizing) {
-              let diff = this.pageX - event.pageX;
-              if (
-                parseInt(this.width.replace('px', '')) - diff >
-                this.block_size
-              ) {
-                this.element.style.width = `${
-                  parseInt(this.width.replace('px', '')) - diff
-                }px`;
-              }
-            }
-          },
-
-          dragTask(dragTask) {
-            this.task = dragTask;
-          },
-
-          dragTaskOver(overTask) {
-            let deleteIndex;
-            let addIndex;
-            if (overTask.id !== this.task.id) {
-              this.tasks.map((task, index) => {
-                if (task.id === this.task.id) deleteIndex = index;
-              });
-              this.tasks.map((task, index) => {
-                if (task.id === overTask.id) addIndex = index;
-              });
-              this.tasks.splice(deleteIndex, 1);
-              this.tasks.splice(addIndex, 0, this.task);
-            }
-          },
 
           addTask() {
-            this.update_mode = false;
-            this.form = {};
-            this.show = true;
           },
 
           saveTask() {
-            this.form.id = Math.random();
-            this.tasks.push(this.form);
-            this.form = {};
-            this.show = false;
-            console.log(this.tasks);
           },
-
         },
         mounted() {
           this.getCalendar();
@@ -506,34 +368,6 @@ export default {
             return lists;
           },
 
-          taskBars() {
-            let start_date = moment(this.start_month);
-            let top = 10;
-            let left;
-            let between;
-            let start;
-            let style;
-            return this.lists.map((list) => {
-              style = {};
-              let date_from = moment(list.start_date);
-              let date_to = moment(list.end_date);
-              between = date_to.diff(date_from, 'days');
-              between++;
-              start = date_from.diff(start_date, 'days');
-              left = start * this.block_size;
-              style = {
-                top: `${top}px`,
-                left: `${left}px`,
-                width: `${this.block_size * between}px`,
-              };
-
-              top = top + 40;
-              return {
-                style,
-                list,
-              };
-            });
-          },
         },
       };
 </script>
