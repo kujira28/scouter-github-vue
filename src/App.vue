@@ -149,8 +149,6 @@
                 />
               </div>
               <div class="my-4">
-                <label class="text-xs">重要</label>
-                <input class="ml-2" type="checkbox" id="checkbox" v-model="form.important" />
               </div>
 
               <div v-if="update_mode" class="flex items-center justify-between">
@@ -213,8 +211,6 @@
                   @dragstart="dragStart(dayEvent.id)"
                 >
                   <div class="flex justify-center items-center">
-                    <p v-if="dayEvent.important">重要：</p>
-                    <p>{{ dayEvent.name }}</p>
                   </div>
                   <p>開始{{ dayEvent.startTime }}</p>
                   <p>終了予定{{ dayEvent.endTime }}</p>
@@ -436,10 +432,8 @@ export default {
           },
 
           nextMonth() {
-            this.currentDate = moment(this.currentDate).add(1, 'month');
           },
           prevMonth() {
-            this.currentDate = moment(this.currentDate).subtract(1, 'month');
           },
 
           youbi(dayIndex) {
@@ -539,37 +533,14 @@ export default {
           },
           sortedEvents() {
             return this.events.slice().sort(function (a, b) {
-              let startTime = parseInt(a.startTime.replace(':', ''));
-              let endTime = parseInt(b.startTime.replace(':', ''));
+              let startTime = parseInt(a);
+              let endTime = parseInt(b);
 
               if (startTime < endTime) return -1;
               if (startTime > endTime) return 1;
-              return 0;
             });
           },
 
-          sortedEventsByHour() {
-            return this.events.slice().sort(function (a, b) {
-              if (
-                moment(a.end).diff(moment(a.start), 'days') === 1 &&
-                moment(b.end).diff(moment(b.start), 'days') === 1
-              ) {
-                let startTime = moment(a.startTime).format('h:mm');
-                let endTime = moment(b.startTime).format('h:mm');
-                if (startTime < endTime) return -1;
-                if (startTime > endTime) return 1;
-                return 0;
-              } else {
-                return this.events.slice().sort(function (a, b) {
-                  let startDate = moment(a.start).format('YYYY-MM-DD');
-                  let endDate = moment(b.start).format('YYYY-MM-DD');
-                  if (startDate < endDate) return -1;
-                  if (startDate > endDate) return 1;
-                  return 0;
-                });
-              }
-            });
-          },
         },
 }
 </script>
