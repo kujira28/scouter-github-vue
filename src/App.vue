@@ -278,7 +278,7 @@ export default {
           getDays(year, month, block_number) {
             const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
             let days = [];
-            let date = moment(`${year}-${month}-01`);
+            let date = moment(`${year}-${month}-01`); 
             let num = date.daysInMonth();
             for (let i = 0; i < num; i++) {
               days.push({
