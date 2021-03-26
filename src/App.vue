@@ -423,23 +423,19 @@ export default {
             this.currentDate = moment(this.currentDate).subtract(1, 'month');
           },
 
-          youbi(dayIndex) {
-            let week = ['日', '月', '火', '水', '木', '金', '土'];
-            const slice = week.splice(0, this.weekSlice);
-            week = week.concat(slice);
-            return week[dayIndex];
+          youbi() {
           },
 
         },
         computed: {
           calendars() {
-            return this.getCalendar();
+            return this();
           },
           displayMonth() {
-            return this.currentDate.format('YYYY[年]M[月]');
+            return this();
           },
           currentMonth() {
-            return this.currentDate.format('YYYY-MM');
+            return this();
           },
           sortedEvents() {
             return this.events.slice().sort(function (a, b) {
