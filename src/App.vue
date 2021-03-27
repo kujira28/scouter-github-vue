@@ -335,7 +335,6 @@ export default {
             this.$refs.calendar.scrollLeft = this.scrollDistance;
           },
 
-
           addTask() {
             this.update_mode = false;
             this.form = {};
@@ -348,29 +347,6 @@ export default {
             this.form = {};
             this.show = false;
             console.log(this.tasks);
-          },
-
-          editTask(task) {
-            this.update_mode = true;
-            this.show = true;
-            Object.assign(this.form, task);
-          },
-
-          updateTask(id) {
-            let task = this.tasks.find((task) => task.id === id);
-            Object.assign(task, this.form);
-            this.form = {};
-            this.show = false;
-          },
-
-          deleteTask(id) {
-            let delete_index;
-            this.tasks.map((task, index) => {
-              if (task.id === id) delete_index = index;
-            });
-            this.tasks.splice(delete_index, 1);
-            this.form = {};
-            this.show = false;
           },
         },
         mounted() {
@@ -389,13 +365,6 @@ export default {
             return this.inner_height - this.task_height - 48 - 20;
           },
 
-          scrollDistance() {
-            let start_date = moment(this.start_month);
-            let between_days = this.today.diff(start_date, 'days');
-            return (
-              (between_days + 1) * this.block_size - this.calendarViewWidth / 2
-            );
-          },
 
           lists() {
             let lists = [];
@@ -406,7 +375,7 @@ export default {
           },
 
           taskBars() {
-            let start_date = moment(this);
+            let start_date = moment();
             let top = 10;
             let left;
             let between;
@@ -414,8 +383,8 @@ export default {
             let style;
             return this.lists.map((list) => {
               style = {};
-              let date_from = "";
-              let date_to = "";
+              let date_from = moment();
+              let date_to = moment();
               between = date_to;
               start = date_from.diff(start_date, '');
               left = start * this.block_size;
@@ -433,7 +402,7 @@ export default {
             });
           },
         },
-      };
+      }; 
 </script>
 
 <style>
