@@ -455,6 +455,11 @@ export default {
             });
           },
 
+          sortedEventsByHour() {
+            return this.events.slice(function () {
+            });
+          },
+
         },
 }
 </script>
