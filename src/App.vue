@@ -271,10 +271,6 @@ export default {
   },
          methods: {
           jumpCalendar() {
-            this.currentDate = moment(this.currentDate)
-              .year(parseInt(this.jumpYear))
-              .month(parseInt(this.jumpMonth))
-              .subtract(1, 'month');
           },
           addTask() {
             this.update_mode = false;
@@ -443,83 +439,6 @@ export default {
             return week[dayIndex];
           },
 
-          dragStart(dayEvent) {
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.dropEffect = 'move';
-            event.dataTransfer.setData('eventId', dayEvent);
-          },
-
-          dragleft(dayEvent) {
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.dropEffect = 'move';
-            event.dataTransfer.setData('dragIdLeft', dayEvent);
-          },
-          dragright(dayEvent) {
-            event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.dropEffect = 'move';
-            event.dataTransfer.setData('dragIdRight', dayEvent);
-          },
-          dragEnd(date) {
-            let eventId = event.dataTransfer.getData('eventId');
-            let dragIdLeft = event.dataTransfer.getData('dragIdLeft');
-            let dragIdRight = event.dataTransfer.getData('dragIdRight');
-            // this.colRight = false;
-
-            if (eventId !== '') {
-              let dragEvent = this.events.find((event) => event.id == eventId);
-              let betweenDays = moment(dragEvent.end).diff(
-                moment(dragEvent.start),
-                'days'
-              );
-              dragEvent.start = date;
-              dragEvent.end = moment(dragEvent.start)
-                .add(betweenDays, 'days')
-                .format('YYYY-MM-DD');
-
-              let drag_index;
-              this.events.map((task, index) => {
-                if (task.id === parseFloat(eventId)) {
-                  drag_index = index;
-                }
-              });
-              this.events.splice(drag_index, 1);
-              this.events.push(dragEvent);
-
-            }
-
-            if (dragIdLeft !== '') {
-              let dragEvent = this.events.find(
-                (event) => event.id == dragIdLeft
-              );
-              dragEvent.start = date;
-
-              let drag_index;
-              this.events.map((task, index) => {
-                if (task.id === parseFloat(dragIdLeft)) {
-                  drag_index = index;
-                }
-              });
-              this.events.splice(drag_index, 1);
-              this.events.push(dragEvent);
-            }
-
-            if (dragIdRight !== '') {
-              let dragEvent = this.events.find(
-                (event) => event.id == dragIdRight
-              );
-              dragEvent.end = date;
-
-              let drag_index;
-              this.events.map((task, index) => {
-                if (task.id === parseFloat(dragIdRight)) {
-                  drag_index = index;
-                }
-              });
-              this.events.splice(drag_index, 1);
-              this.events.push(dragEvent);
-              this.colRight = true;
-            }
-          },
         },
         computed: {
           calendars() {
@@ -532,12 +451,7 @@ export default {
             return this.currentDate.format('YYYY-MM');
           },
           sortedEvents() {
-            return this.events.slice().sort(function (a, b) {
-              let startTime = parseInt(a);
-              let endTime = parseInt(b);
-
-              if (startTime < endTime) return -1;
-              if (startTime > endTime) return 1;
+            return this.events.slice(function () {
             });
           },
 
