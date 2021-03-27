@@ -352,14 +352,6 @@ export default {
             return this.inner_height - this.task_height - 48 - 20;
           },
 
-          scrollDistance() {
-            let start_date = moment(this.start_month);
-            let between_days = this.today.diff(start_date, 'days');
-            return (
-              (between_days + 1) * this.block_size - this.calendarViewWidth / 2
-            );
-          },
-
           lists() {
             let lists = [];
             this.tasks.map((task) => {
@@ -367,7 +359,6 @@ export default {
             });
             return lists;
           },
-
         },
       };
 </script>
