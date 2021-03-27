@@ -345,118 +345,18 @@ export default {
             }
           },
           stopDrag() {
-            if (this) {
-              let diff = this - event;
-              let days = Math.ceil(diff / this);
-              if (days !== 0) {
-                let task = this((task) => task === this);
-                let start_date = moment(task).add(-days, '');
-                let end_date = moment(task).add(-days, '');
-                task['start_date'] = start_date.format('YYYY-MM-DD');
-                task['end_date'] = end_date.format('YYYY-MM-DD');
-              } else {
-                this.element.style.left = `${this}px`;
-              }
-            }
-            if (this.leftResizing) {
-              let diff = this - event;
-              let days = Math.ceil(diff / this);
-              if (days !== 0) {
-                let task = this((task) => task === this);
-                let start_date = moment(task).add(-days, '');
-                let end_date = moment(task);
-                if (end_date.diff(start_date, '') <= 0) {
-                  task['start_date'] = end_date.format('YYYY-MM-DD');
-                } else {
-                  task['start_date'] = start_date.format('YYYY-MM-DD');
-                }
-              } else {
-                this.element.style.width = this;
-                this.element.style.left = `${this}px`;
-              }
-            }
-
-            if (this) {
-              let diff = this - event;
-              let days = Math.ceil(diff / this);
-              if (days === 1) {
-                this.element = `${parseInt(
-                  this.width
-                )}px`;
-              } else if (days <= 2) {
-                days--;
-                let task = this((task) => task.id === this);
-                let end_date = moment(task).add(-days, '');
-                task['end_date'] = end_date.format('YYYY-MM-DD');
-              } else {
-                let task = this((task) => task === this);
-                let start_date = moment(task);
-                let end_date = moment(task).add(-days, '');
-                if (end_date.diff(start_date, 'days') < 0) {
-                  task['end_date'] = start_date.format('YYYY-MM-DD');
-                } else {
-                  task['end_date'] = end_date.format('YYYY-MM-DD');
-                }
-              }
-            }
           },
 
-          mouseDownResize(task, direction) {
-            direction === 'left'
-              ? (this.leftResizing = true)
-              : (this.rightResizing = true);
-            this.pageX = event.pageX;
-            this.width = event.target.style.width;
-            this.left = event.target.style.left;
-            this.element = event.target;
-            this.task_id = task.id;
+          mouseDownResize() {
           },
 
           mouseResize() {
-            if (this.leftResizing) {
-              let diff = this.pageX - event.pageX;
-              if (
-                parseInt(this.width.replace('px', '')) + diff >
-                this.block_size
-              ) {
-                this.element.style.width = `${
-                  parseInt(this.width.replace('px', '')) + diff
-                }px`;
-                this.element.style.left = `${
-                  this.left.replace('px', '') - diff
-                }px`;
-              }
-            }
-            if (this.rightResizing) {
-              let diff = this.pageX - event.pageX;
-              if (
-                parseInt(this.width.replace('px', '')) - diff >
-                this.block_size
-              ) {
-                this.element.style.width = `${
-                  parseInt(this.width.replace('px', '')) - diff
-                }px`;
-              }
-            }
           },
 
-          dragTask(dragTask) {
-            this.task = dragTask;
+          dragTask() {
           },
 
-          dragTaskOver(overTask) {
-            let deleteIndex;
-            let addIndex;
-            if (overTask.id !== this.task.id) {
-              this.tasks.map((task, index) => {
-                if (task.id === this.task.id) deleteIndex = index;
-              });
-              this.tasks.map((task, index) => {
-                if (task.id === overTask.id) addIndex = index;
-              });
-              this.tasks.splice(deleteIndex, 1);
-              this.tasks.splice(addIndex, 0, this.task);
-            }
+          dragTaskOver() {
           },
 
           addTask() {
