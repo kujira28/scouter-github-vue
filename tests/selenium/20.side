@@ -1,0 +1,112 @@
+{
+  "id": "4d88682c-7414-4763-a086-85cb20617e5c",
+  "version": "2.0",
+  "name": "20",
+  "url": "http://localhost",
+  "tests": [{
+    "id": "56959e55-37ed-456e-b7a0-26f59b60c4d8",
+    "name": "20",
+    "commands": [{
+      "id": "8af781b0-c66b-4c0d-9e15-bba3bb00c051",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d78a5395-3a9f-4309-b06b-310cf3a0c534",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8834ccc1-bbd4-4168-be3c-6938bff005c0",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.calendar-youbi:nth-child(1)",
+      "targets": [
+        ["css=.calendar-youbi:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div/div", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/div", "xpath:position"]
+      ],
+      "value": "日"
+    }, {
+      "id": "cda25bc9-39f2-4911-b0e0-865a91edf28c",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.calendar-youbi:nth-child(2)",
+      "targets": [
+        ["css=.calendar-youbi:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "月"
+    }, {
+      "id": "ad5c8144-4141-4148-95bb-1145eadfabc7",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.calendar-youbi:nth-child(3)",
+      "targets": [
+        ["css=.calendar-youbi:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "火"
+    }, {
+      "id": "08a3d436-f196-4977-8330-6aa9da895720",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.calendar-youbi:nth-child(4)",
+      "targets": [
+        ["css=.calendar-youbi:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "水"
+    }, {
+      "id": "8ba29a5c-4f81-45cf-bf69-50667ca6344e",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.calendar-youbi:nth-child(5)",
+      "targets": [
+        ["css=.calendar-youbi:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "木"
+    }, {
+      "id": "b1dc3457-7288-4db5-8794-14220f7bf3ee",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.calendar-youbi:nth-child(6)",
+      "targets": [
+        ["css=.calendar-youbi:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "金"
+    }, {
+      "id": "95bf09e8-260d-4e02-a2ad-d5df2c211b3a",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.calendar-youbi:nth-child(7)",
+      "targets": [
+        ["css=.calendar-youbi:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/div[2]", "xpath:position"]
+      ],
+      "value": "土"
+    }]
+  }],
+  "suites": [{
+    "id": "0ae04bad-fd52-45bb-9cfb-16ab3a4f998c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["56959e55-37ed-456e-b7a0-26f59b60c4d8"]
+  }],
+  "urls": ["localhost"],
+  "plugins": []
+}
