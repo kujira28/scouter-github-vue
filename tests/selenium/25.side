@@ -1,0 +1,217 @@
+{
+  "id": "2a6b003f-bd9a-4532-8908-d62154cbcd96",
+  "version": "2.0",
+  "name": "25",
+  "url": "http://localhost",
+  "tests": [{
+    "id": "9e1fb617-d42a-410d-a1d2-16552b7f2db4",
+    "name": "25",
+    "commands": [{
+      "id": "8610155d-1255-40a0-be9d-7b9659f82b84",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e4b2b03c-e7d2-4651-ae58-e18e3fbccddd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1057",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0b93090c-0b6c-47b7-8d21-f1af2684a2b5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-xs > .font-bold",
+      "targets": [
+        ["css=.text-xs > .font-bold", "css:finder"],
+        ["xpath=//div[@id='app']/div/button/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'予定を追加する')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9496387-1690-41d1-bf7f-3a5a1f1406ce",
+      "comment": "",
+      "command": "click",
+      "target": "css=.my-4:nth-child(2) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(2) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "35f2db34-0eb3-4434-b01a-ce6f96bffa50",
+      "comment": "yyyy-mm-ddで今月を取得",
+      "command": "executeScript",
+      "target": "date = new Date; return date.getFullYear()+'-'+(\"0\"+(date.getMonth() + 1)).slice(-2)+'-01'",
+      "targets": [],
+      "value": "this_month"
+    }, {
+      "id": "b7bcbbcf-1567-4461-acbb-54e4217a053b",
+      "comment": "",
+      "command": "type",
+      "target": "css=.my-4:nth-child(2) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(2) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "4f6d0421-c788-4dd2-9e00-64b6a7a70122",
+      "comment": "",
+      "command": "click",
+      "target": "css=.my-4:nth-child(3) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(3) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "271c801e-7733-411a-818e-fdac2d9d2b36",
+      "comment": "",
+      "command": "type",
+      "target": "css=.my-4:nth-child(3) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(3) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${this_month}"
+    }, {
+      "id": "9b683d06-558f-4095-9304-adbd5edde19b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.my-4:nth-child(4) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(4) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4168884f-5e38-4681-afa4-2b86c6b5c22e",
+      "comment": "",
+      "command": "type",
+      "target": "css=.my-4:nth-child(4) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(4) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "${this_month}"
+    }, {
+      "id": "a69a7b18-a6d3-474e-9afd-9f88213688db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.my-4:nth-child(5) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(5) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[4]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f497b5c3-88ed-4342-bed7-ec55344b8f8f",
+      "comment": "",
+      "command": "select",
+      "target": "css=.my-4:nth-child(5) > .border",
+      "targets": [],
+      "value": "label=01:00"
+    }, {
+      "id": "9621ec24-4557-47d3-85a0-ccc2dc083596",
+      "comment": "",
+      "command": "click",
+      "target": "css=.my-4:nth-child(6) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(6) > .border", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9838d46-46cd-4bc9-8eb1-113a9d21290b",
+      "comment": "",
+      "command": "select",
+      "target": "css=.my-4:nth-child(6) > .border",
+      "targets": [],
+      "value": "label=02:00"
+    }, {
+      "id": "4ac8db08-b8df-4e1e-af09-8347687f19f3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.my-4:nth-child(7) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(7) > .border", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[6]/input", "xpath:idRelative"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bb0cdd53-5519-4c01-804c-3d329131594f",
+      "comment": "",
+      "command": "type",
+      "target": "css=.my-4:nth-child(7) > .border",
+      "targets": [
+        ["css=.my-4:nth-child(7) > .border", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[6]/input", "xpath:idRelative"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "pink"
+    }, {
+      "id": "2ba29ef4-8ac0-41b2-8c31-d668edaee370",
+      "comment": "",
+      "command": "click",
+      "target": "id=checkbox",
+      "targets": [
+        ["id=checkbox", "id"],
+        ["css=#checkbox", "css:finder"],
+        ["xpath=//input[@id='checkbox']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[7]/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1cceff67-e898-4042-ae29-a3288d7aa8d3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.font-bold > .font-bold",
+      "targets": [
+        ["css=.font-bold > .font-bold", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[2]/div/div[2]/div[8]/button/span", "xpath:idRelative"],
+        ["xpath=//div[8]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'タスクを追加')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c8d39137-ed78-4b4e-875f-8447fa0004f3",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=p:nth-child(1)",
+      "targets": [
+        ["css=p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='app']/div/div[3]/div[2]/div[2]/div[2]/div/div/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'重要：')]", "xpath:innerText"]
+      ],
+      "value": "重要："
+    }]
+  }],
+  "suites": [{
+    "id": "21f1a182-62a1-46e3-b069-e759dce48b57",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["9e1fb617-d42a-410d-a1d2-16552b7f2db4"]
+  }],
+  "urls": ["localhost"],
+  "plugins": []
+}
