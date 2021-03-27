@@ -168,7 +168,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": []
+    "tests": ["5a904837-f8c3-4022-97d3-4adca19ee19b"]
   }],
   "urls": ["localhost", "localhost", "localhost"],
   "plugins": []
