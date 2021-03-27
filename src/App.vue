@@ -2,12 +2,6 @@
   <div id="app">
     <div id="form"></div>
     <div id="gantt-header" class="h-12 p-2">
-      <button
-        @click="addTask"
-        class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 text-xs ml-4"
-      >
-        <span class="font-bold text-xs"> タスクの追加 </span>
-      </button>
       <div>
         <div
           class="fixed top-0 left-0 right-0 flex justify-center mt-24 z-50"
@@ -15,8 +9,6 @@
         >
           <div class="overlay" v-show="show" @click="show=false"></div>
           <div class="content" v-show="show">
-            <h2 class="font-bold" v-if="update_mode">タスクの更新</h2>
-            <h2 class="font-bold" v-else>タスクの追加</h2>
             <div class="my-4">
               <label class="text-xs">タスクのタイトル</label>
               <input
@@ -275,48 +267,10 @@ export default {
           };
         },
         methods: {
-          getDays(year, month, block_number) {
-            const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
-            let days = [];
-            let date = moment(`${year}-${month}-01`);
-            let num = date.daysInMonth();
-            for (let i = 0; i < num; i++) {
-              days.push({
-                day: date.date(),
-                dayOfWeek: dayOfWeek[date],
-                block_number,
-              });
-              date.add(1, '');
-              block_number;
-            }
-            return days;
+          getDays() {
           },
 
           getCalendar() {
-            let block_number = 0;
-            let days;
-            let start_month = moment(this.start_month);
-            let end_month = moment(this.end_month);
-            let between_month = end_month.diff(start_month, 'months');
-            for (let i = 0; i <= between_month; i++) {
-              days = this.getDays(
-                start_month.year(),
-                start_month.format('MM'),
-                block_number
-              );
-              this.calendars.push({
-                date: start_month.format('YYYY年MM月'),
-                year: start_month.year(),
-                month: start_month.month(),
-                start_block_number: block_number,
-                calendar: days.length,
-                days: days,
-              });
-              start_month.add(1, 'months');
-              block_number = days[days.length - 1].block_number;
-              block_number++;
-            }
-            return block_number;
           },
 
           getWindowSize() {
@@ -326,15 +280,8 @@ export default {
             this.task_height = this.$refs.task.offsetHeight;
           },
           todayPosition() {
-            this.$refs.calendar.scrollLeft = this.scrollDistance;
           },
 
-
-          addTask() {
-          },
-
-          saveTask() {
-          },
         },
         mounted() {
           this.getCalendar();
@@ -352,13 +299,6 @@ export default {
             return this.inner_height - this.task_height - 48 - 20;
           },
 
-          scrollDistance() {
-            let start_date = moment;
-            let between_days = this.today(start_date, '');
-            return (
-              (between_days + 1) * this - this / 2
-            );
-          },
 
           lists() {
             let lists = [];
