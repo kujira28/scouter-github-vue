@@ -407,6 +407,6 @@
     "timeout": 300,
     "tests": ["b25db26a-b302-4861-8029-1de91ca2fe2d"]
   }],
-  "urls": ["localhost", "localhost", "localhost"],
+  "urls": ["localhost"],
   "plugins": []
 }
