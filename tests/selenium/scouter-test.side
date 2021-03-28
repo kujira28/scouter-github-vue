@@ -33,17 +33,6 @@
       ],
       "value": ""
     }, {
-      "id": "5e7c38af-c447-43cc-aaf9-f7f82215d581",
-      "comment": "",
-      "command": "type",
-      "target": "css=.my-4:nth-child(1) > .border",
-      "targets": [
-        ["css=.my-4:nth-child(1) > .border", "css:finder"],
-        ["xpath=//div[@id='gantt-header']/div/div/div[2]/div/input", "xpath:idRelative"],
-        ["xpath=//input", "xpath:position"]
-      ],
-      "value": "trip"
-    }, {
       "id": "7e5c2471-b1a8-4ce0-a9a6-dae0a6d23fa5",
       "comment": "",
       "command": "click",
