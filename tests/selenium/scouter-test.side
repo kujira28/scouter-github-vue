@@ -2,7 +2,7 @@
   "id": "9a8b5961-cc23-41c5-a384-1b1be5054d1a",
   "version": "2.0",
   "name": "test",
-  "url": "http://localhost:8081/",
+  "url": "http://localhost",
   "tests": [{
     "id": "ddddc2ca-d6c6-4104-820f-401ffd1b2753",
     "name": "test",
@@ -10,7 +10,7 @@
       "id": "2d08a65c-6ffb-430f-a89c-afe76ea68680",
       "comment": "",
       "command": "open",
-      "target": "http://localhost:8081/",
+      "target": "http://localhost",
       "targets": [],
       "value": ""
     }, {
@@ -234,6 +234,6 @@
     "timeout": 300,
     "tests": ["ddddc2ca-d6c6-4104-820f-401ffd1b2753"]
   }],
-  "urls": [],
+  "urls": [localhost],
   "plugins": []
 }
