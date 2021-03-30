@@ -183,6 +183,7 @@
                   @dragstart="dragStart(dayEvent.id)"
                 >
                   <div class="flex justify-center items-center">
+                    <p v-if="dayEvent.important">重要：</p>
                     <p>{{ dayEvent.name }}</p>
                   </div>
                   <p>開始{{ dayEvent.startTime }}</p>
@@ -237,6 +238,7 @@ export default {
             color: '',
             startTime: '',
             endTime: '',
+            important: false,
           },
           events: [],
   }
