@@ -297,9 +297,6 @@ export default {
           calendarViewHeight() {
             return this.inner_height - this.task_height - 48 - 20;
           },
-
-          scrollDistance() {
-　　　　　　},
           lists() {
             let lists = [];
             this.tasks.map((task) => {
