@@ -2,6 +2,44 @@
   <div class="bg-gray-100 pb-60">
       <div class="max-w-l mx-auto p-1 pt-10 pr-0 text-center">
         <h2 class="text-lg font-bold text-gray-800">{{ displayMonth }}</h2>
+        <form
+          class="flex justify-center items-center my-10"
+          v-on:submit.prevent="jumpCalendar"
+        >
+          <input
+            class="bg-purple-white shadow rounded border-0 p-2 mr-4"
+            type="text"
+            v-model="jumpYear"
+          />
+          <p class="mr-4 text-lg font-bold text-gray-800">年</p>
+          <input
+            class="bg-purple-white shadow rounded border-0 p-2 mr-4"
+            type="text"
+            v-model="jumpMonth"
+          />
+          <p class="mr-4 text-lg font-bold text-gray-800">月</p>
+
+          <button
+            class="focus:outline-none text-white text-sm py-2 px-5 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg"
+            type="submit"
+          >
+            移動
+          </button>
+        </form>
+        <div class="button-area">
+          <button
+            class="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 text-xs ml-4 mb-4 mr-8 ml-auto"
+            @click="prevMonth"
+          >
+            前の月
+          </button>
+          <button
+            class="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 text-xs ml-4 mb-4 mr-0 ml-auto"
+            @click="nextMonth"
+          >
+            次の月
+          </button>
+        </div>
         <button
           @click="addTask"
           class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 text-xs ml-4 mb-4 mr-0 ml-auto"
@@ -111,6 +149,8 @@
                 />
               </div>
               <div class="my-4">
+                <label class="text-xs">重要</label>
+                <input class="ml-2" type="checkbox" id="checkbox" v-model="form.important" />
               </div>
 
               <div v-if="update_mode" class="flex items-center justify-between">
@@ -179,6 +219,7 @@
                   @dragstart="dragStart(dayEvent.id)"
                 >
                   <div class="flex justify-center items-center">
+                    <p v-if="dayEvent.important">重要：</p>
                     <p>{{ dayEvent.name }}</p>
                   </div>
                   <p>開始{{ dayEvent.startTime }}</p>
