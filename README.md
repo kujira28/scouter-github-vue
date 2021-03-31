@@ -1,24 +1,7 @@
-# no22-no30
+# Scouter GitHub Vue.js Test
 
-## Project setup
+## 開発環境のセットアップ手順
 ```
 npm install
+npm run serve  # http://localhost:8080/ でアプリにアクセスができます
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
