@@ -49,4 +49,8 @@ COPY ./docker/httpd-le-ssl.conf /etc/httpd/conf/
 COPY ./docker/options-ssl-apache.conf /etc/letsencrypt/
 COPY ./docker/ssl.conf /etc/httpd/conf.d
 
+# Set scouter repository url
+ARG repository
+ENV REPO_URL_GITHUB_VUE $repository
+
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
