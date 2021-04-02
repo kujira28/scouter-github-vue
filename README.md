@@ -24,4 +24,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### docker build
-docker build -t scouter_github_vue_base:latest --build-arg repository=`echo $REPO_NAME_GITHUB_VUE` .
+docker build -t scouter_github_vue_base:latest --build-arg repository=`echo $REPO_URL_GITHUB_VUE` .
